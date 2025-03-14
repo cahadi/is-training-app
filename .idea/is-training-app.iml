@@ -7,6 +7,8 @@
       <sourceFolder url="file://$MODULE_DIR$/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/Unit" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/php-code-coverage" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/phpunit/phpunit" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/psr/container" />
@@ -123,6 +125,7 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image-laravel" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/intervention/image" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/alexusmai/laravel-file-manager" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/breeze" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
