@@ -12,6 +12,20 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function activity()
+    {
+        return $this->belongsTo(Activity::class);
+    }
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
     /**
      * The attributes that are mass assignable.
      *

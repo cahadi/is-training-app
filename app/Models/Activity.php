@@ -18,4 +18,14 @@ class Activity extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class);
+    }
+
+    public function lessons()
+    {
+        return $this->hasMany(Lesson::class);
+    }
 }
