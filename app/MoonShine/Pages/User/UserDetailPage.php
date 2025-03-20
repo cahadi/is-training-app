@@ -7,6 +7,7 @@ namespace App\MoonShine\Pages\User;
 use MoonShine\Laravel\Pages\Crud\DetailPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
+use MoonShine\UI\Fields\Text;
 use Throwable;
 
 
@@ -17,7 +18,11 @@ class UserDetailPage extends DetailPage
      */
     protected function fields(): iterable
     {
-        return [];
+        return [
+            Text::make('Surname'),
+            Text::make('Role', 'role.title'),
+            Text::make('Activity', 'activity.title'),
+        ];
     }
 
     /**

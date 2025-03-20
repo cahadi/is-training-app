@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\Lesson;
 
+use App\Models\Activity;
+use App\Models\Topic;
+use App\Models\Type;
 use MoonShine\Laravel\Pages\Crud\IndexPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
+use MoonShine\UI\Fields\Enum;
+use MoonShine\UI\Fields\ID;
+use MoonShine\UI\Fields\Text;
 use Throwable;
 
 
@@ -17,7 +23,13 @@ class LessonIndexPage extends IndexPage
      */
     protected function fields(): iterable
     {
-        return [];
+        return [
+            ID::make(),
+            Text::make('Title'),
+            Text::make('Topic', 'topic.title'),
+            Text::make('Type', 'type.title'),
+            Text::make('Activity', 'activity.title'),
+        ];
     }
 
     /**

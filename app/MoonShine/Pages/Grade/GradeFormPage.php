@@ -7,6 +7,7 @@ namespace App\MoonShine\Pages\Grade;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
+use MoonShine\UI\Fields\Text;
 use Throwable;
 
 
@@ -17,7 +18,11 @@ class GradeFormPage extends FormPage
      */
     protected function fields(): iterable
     {
-        return [];
+        return [
+            Text::make('Rating'),
+            Text::make('Min'),
+            Text::make('Max'),
+        ];
     }
 
     /**

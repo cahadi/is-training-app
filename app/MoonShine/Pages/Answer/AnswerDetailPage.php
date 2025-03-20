@@ -7,6 +7,7 @@ namespace App\MoonShine\Pages\Answer;
 use MoonShine\Laravel\Pages\Crud\DetailPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
+use MoonShine\UI\Fields\Text;
 use Throwable;
 
 
@@ -17,7 +18,13 @@ class AnswerDetailPage extends DetailPage
      */
     protected function fields(): iterable
     {
-        return [];
+        return [
+            Text::make('Title'),
+            Text::make('User', 'user.surname'),
+            Text::make('Grade', 'grade.rating'),
+            Text::make('Lesson', 'lesson.title'),
+            Text::make('Body'),
+        ];
     }
 
     /**

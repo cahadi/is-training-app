@@ -7,6 +7,8 @@ namespace App\MoonShine\Pages\Answer;
 use MoonShine\Laravel\Pages\Crud\IndexPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
+use MoonShine\UI\Fields\ID;
+use MoonShine\UI\Fields\Text;
 use Throwable;
 
 
@@ -17,7 +19,12 @@ class AnswerIndexPage extends IndexPage
      */
     protected function fields(): iterable
     {
-        return [];
+        return [
+            ID::make(),
+            Text::make('Title'),
+            Text::make('User', 'user.surname'),
+            Text::make('Grade', 'grade.rating'),
+        ];
     }
 
     /**
