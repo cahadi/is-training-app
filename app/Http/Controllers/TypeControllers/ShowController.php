@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\ActivityControllers;
+namespace App\Http\Controllers\TypeControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Activity;
 use Illuminate\Http\Request;
 
-class CRUDController extends Controller
+class ShowController extends Controller
 {
     public function showAll()
     {
@@ -17,17 +17,5 @@ class CRUDController extends Controller
     {
         $activity = Activity::find($id);
         return view('activity.showOne', compact('activity'));
-    }
-    public function create(Request $request)
-    {
-
-    }
-    public function update(Request $request)
-    {
-
-    }
-    public function delete(Request $request)
-    {
-
     }
 }

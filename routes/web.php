@@ -18,23 +18,46 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/grades', function(){
-    return view('frontend.pages.grades');
-});
 
-Route::get('/lessons', function(){
-    return view('frontend.pages.lessons');
-});
 
-Route::prefix('/activity')->group(function (){});
-Route::prefix('/answer')->group(function (){});
-Route::prefix('/grade')->group(function (){});
-Route::prefix('/lesson')->group(function (){});
-Route::prefix('/role')->group(function (){});
-Route::prefix('/subject')->group(function (){});
-Route::prefix('/topic')->group(function (){});
-Route::prefix('/type')->group(function (){});
-Route::prefix('/user')->group(function (){});
+
+
+Route::prefix('/activities')->group(function (){
+    Route::get('/',
+        [\App\Http\Controllers\AnswerControllers\ShowController::class, 'showAll'])
+        ->name('all');
+    Route::get('/{id}',
+        [\App\Http\Controllers\AnswerControllers\ShowController::class, 'showOne'])
+        ->name('one');
+});
+Route::prefix('/answers')->group(function (){
+
+});
+Route::prefix('/grades')->group(function (){
+    Route::get('/', function(){
+        return view('frontend.pages.grades');
+    });
+});
+Route::prefix('/lessons')->group(function (){
+    Route::get('/', function(){
+        return view('frontend.pages.lessons');
+    });
+});
+Route::prefix('/roles')->group(function (){
+
+});
+Route::prefix('/subjects')->group(function (){
+
+});
+Route::prefix('/topics')->group(function (){
+
+});
+Route::prefix('/types')->group(function (){
+
+});
+Route::prefix('/users')->group(function (){
+
+});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
