@@ -18,6 +18,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
+Route::get('/grades', function(){
+    return view('frontend.pages.grades');
+});
+
+Route::get('/lessons', function(){
+    return view('frontend.pages.lessons');
+});
 
 
 
