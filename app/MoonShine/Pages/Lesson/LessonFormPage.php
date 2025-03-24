@@ -7,6 +7,10 @@ namespace App\MoonShine\Pages\Lesson;
 use App\Models\Activity;
 use App\Models\Topic;
 use App\Models\Type;
+use App\MoonShine\Resources\ActivityResource;
+use App\MoonShine\Resources\TopicResource;
+use App\MoonShine\Resources\TypeResource;
+use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
@@ -23,28 +27,21 @@ class LessonFormPage extends FormPage
      */
     protected function fields(): iterable
     {
-        $topicsArray = [];
-        $typesArray = [];
-        $activitiesArray = [];
-        $topics = Topic::all();
-        foreach ($topics as $topic) {
-            $topicsArray[$topic->id] = $topic->title;
-        }
-        $types = Type::all();
-        foreach ($types as $type) {
-            $typesArray[$type->id] = $type->title;
-        }
-        $activities = Activity::all();
-        foreach ($activities as $activity) {
-            $activitiesArray[$activity->id] = $activity->title;
-        }
-
         return [
             ID::make(),
             Text::make('Title'),
-            Enum::make('Topic')->options($topicsArray),
-            Enum::make('Type')->options($typesArray),
-            Enum::make('Activity')->options($activitiesArray),
+            BelongsTo::make('Topic',
+                'topic',
+                'title',
+                resource: TopicResource::class),
+            BelongsTo::make('Type',
+                'type',
+                'title',
+                resource: TypeResource::class),
+            BelongsTo::make('Activity',
+                'activity',
+                'title',
+                resource: ActivityResource::class)
         ];
     }
 

@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\Role;
 
-use App\Models\Activity;
+use App\MoonShine\Resources\ActivityResource;
+use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
-use MoonShine\UI\Fields\Enum;
 use MoonShine\UI\Fields\Text;
 use Throwable;
 
@@ -20,14 +20,13 @@ class RoleFormPage extends FormPage
      */
     protected function fields(): iterable
     {
-        $activitiesArray = [];
-        $activities = Activity::all();
-        foreach ($activities as $activity) {
-            $activitiesArray[$activity->id] = $activity->title;
-        }
         return [
             Text::make('Title'),
-            Enum::make('Activity')->options($activitiesArray),
+            BelongsTo::make(
+                'Activity',
+                'activity',
+                'title',
+                resource:ActivityResource::class)
             ];
     }
 

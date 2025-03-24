@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\Answer;
 
-use App\Models\Grade;
-use App\Models\Lesson;
-use App\Models\User;
+use App\MoonShine\Resources\GradeResource;
+use App\MoonShine\Resources\LessonResource;
+use App\MoonShine\Resources\UserResource;
+use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
-use MoonShine\UI\Fields\Enum;
 use MoonShine\UI\Fields\Text;
 use Throwable;
 
@@ -22,26 +22,20 @@ class AnswerFormPage extends FormPage
      */
     protected function fields(): iterable
     {
-        $usersArray = [];
-        $users = User::all();
-        foreach ($users as $user) {
-            $usersArray[$user->id] = $user->title;
-        }
-        $gradesArray = [];
-        $grades = Grade::all();
-        foreach ($grades as $grade) {
-            $gradesArray[$grade->id] = $grade->title;
-        }
-        $lessonsArray = [];
-        $lessons = Lesson::all();
-        foreach ($lessons as $lesson) {
-            $lessonsArray[$lesson->id] = $lesson->title;
-        }
         return [
             Text::make('Title'),
-            Enum::make('User')->options($usersArray),
-            Enum::make('Grade')->options($gradesArray),
-            Enum::make('Lesson')->options($lessonsArray),
+            BelongsTo::make('User',
+                'user',
+                'surname',
+                resource: UserResource::class),
+            BelongsTo::make('Grade',
+                'grade',
+                'rating',
+                resource: GradeResource::class),
+            BelongsTo::make('Lesson',
+                'lesson',
+                'title',
+                resource: LessonResource::class),
             Text::make('Body'),
         ];
     }

@@ -6,6 +6,9 @@ namespace App\MoonShine\Pages\Topic;
 
 use App\Models\Activity;
 use App\Models\Subject;
+use App\MoonShine\Resources\ActivityResource;
+use App\MoonShine\Resources\SubjectResource;
+use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
@@ -21,21 +24,16 @@ class TopicFormPage extends FormPage
      */
     protected function fields(): iterable
     {
-        #Лучше этого, способ пока не найден
-        $activities = Activity::all();
-        $activitiesArray = [];
-        $subjectsArray = [];
-        $subjects = Subject::all();
-        foreach ($activities as $activity) {
-            $activitiesArray[$activity->id] = $activity->title;
-        }
-        foreach ($subjects as $subject) {
-            $subjectsArray[$subject->id] = $subject->title;
-        }
         return [
             Text::make('Title'),
-            Enum::make('Activity')->options($activitiesArray),
-            Enum::make('Subject')->options($subjectsArray)
+            BelongsTo::make('Activity',
+                'activity',
+                'title',
+                resource: ActivityResource::class),
+            BelongsTo::make('Subject',
+                'subject',
+                'title',
+                resource: SubjectResource::class)
         ];
     }
 

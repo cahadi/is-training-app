@@ -6,6 +6,9 @@ namespace App\MoonShine\Pages\User;
 
 use App\Models\Activity;
 use App\Models\Role;
+use App\MoonShine\Resources\ActivityResource;
+use App\MoonShine\Resources\RoleResource;
+use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
@@ -21,22 +24,18 @@ class UserFormPage extends FormPage
      */
     protected function fields(): iterable
     {
-        $activitiesArray = [];
-        $activities = Activity::all();
-        foreach ($activities as $activity) {
-            $activitiesArray[$activity->id] = $activity->title;
-        }
-        $rolesArray = [];
-        $roles = Role::all();
-        foreach ($roles as $role) {
-            $rolesArray[$role->id] = $role->title;
-        }
         return [
             Text::make('Surname'),
             Text::make('Login'),
             Text::make('Password'),
-            Enum::make('Activity')->options($activitiesArray),
-            Enum::make('Role')->options($rolesArray),
+            BelongsTo::make('Activity',
+                'activity',
+                'title',
+                resource: ActivityResource::class),
+            BelongsTo::make('Role',
+                'role',
+                'title',
+                resource: RoleResource::class)
         ];
     }
 

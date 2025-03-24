@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\Grade;
 
+use App\MoonShine\Resources\AnswerResource;
+use MoonShine\Laravel\Fields\Relationships\HasMany;
 use MoonShine\Laravel\Pages\Crud\IndexPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
@@ -24,6 +26,9 @@ class GradeIndexPage extends IndexPage
             Text::make('Rating'),
             Text::make('Min'),
             Text::make('Max'),
+            HasMany::make('Answers',
+                'answers',
+                resource: AnswerResource::class)
         ];
     }
 
