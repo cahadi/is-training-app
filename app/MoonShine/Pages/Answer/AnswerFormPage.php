@@ -7,11 +7,13 @@ namespace App\MoonShine\Pages\Answer;
 use App\MoonShine\Resources\GradeResource;
 use App\MoonShine\Resources\LessonResource;
 use App\MoonShine\Resources\UserResource;
+use MoonShine\EasyMde\Fields\Markdown;
 use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
 use MoonShine\UI\Fields\Text;
+use MoonShine\UI\Fields\Textarea;
 use Throwable;
 
 
@@ -36,7 +38,7 @@ class AnswerFormPage extends FormPage
                 'lesson',
                 'title',
                 resource: LessonResource::class),
-            Text::make('Body'),
+            Markdown::make('Body'),
         ];
     }
 
