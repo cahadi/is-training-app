@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\MoonShine\Pages\Answer;
 
+use MoonShine\EasyMde\Fields\Markdown;
 use MoonShine\Laravel\Pages\Crud\DetailPage;
 use MoonShine\Contracts\UI\ComponentContract;
 use MoonShine\Contracts\UI\FieldContract;
@@ -23,7 +24,7 @@ class AnswerDetailPage extends DetailPage
             Text::make('User', 'user.surname'),
             Text::make('Grade', 'grade.rating'),
             Text::make('Lesson', 'lesson.title'),
-            Text::make('Body'),
+            Markdown::make('Body'),
         ];
     }
 
