@@ -23,7 +23,7 @@ class AiService
 
         exec($command, $output, $returnVar);
 
-        dd($command, $output, $returnVar);
+        //dd($returnVar);
         if ($returnVar !== 0) {
             Log::error('Ошибка при выполнении JavaScript скрипта', [
                 'command' => $command,
