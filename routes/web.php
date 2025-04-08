@@ -18,53 +18,26 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'home'])->name('home');
 
-Route::get('/grades', function(){
-    return view('frontend.pages.grades');
-});
 
-Route::get('/lessons', function(){
-    return view('frontend.pages.lessons');
-});
-
-
-
-
-Route::prefix('/activities')->group(function (){
-    Route::get('/',
-        [\App\Http\Controllers\AnswerControllers\ShowController::class, 'showAll'])
-        ->name('all');
-    Route::get('/{id}',
-        [\App\Http\Controllers\AnswerControllers\ShowController::class, 'showOne'])
-        ->name('one');
-});
 Route::prefix('/answers')->group(function (){
-
+    Route::get('/form/{title}',
+        [App\Http\Controllers\LessonControllers\ShowFormController::class,
+            'showForm']);
+    Route::post('/create',
+        [App\Http\Controllers\LessonControllers\ShowFormController::class,
+            'create']);
 });
 Route::prefix('/grades')->group(function (){
     Route::get('/', function(){
         return view('frontend.pages.grades');
     });
 });
-Route::prefix('/lessons')->group(function (){
-    Route::get('/', function(){
-        return view('frontend.pages.lessons');
-    });
+Route::prefix('/lesson')->group(function (){
+    Route::get('/{title}',
+        [App\Http\Controllers\LessonControllers\ShowController::class,
+            'showOne']);
 });
-Route::prefix('/roles')->group(function (){
 
-});
-Route::prefix('/subjects')->group(function (){
-
-});
-Route::prefix('/topics')->group(function (){
-
-});
-Route::prefix('/types')->group(function (){
-
-});
-Route::prefix('/users')->group(function (){
-
-});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -81,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    //Route::get('/logout')
 /*});*/
 
 require __DIR__.'/auth.php';

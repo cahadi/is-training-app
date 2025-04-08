@@ -21,7 +21,7 @@ class UserResource extends ModelResource
     protected string $model = User::class;
 
     protected string $title = 'Users';
-    
+
     /**
      * @return list<Page>
      */

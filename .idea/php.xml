@@ -140,6 +140,10 @@
       <path value="$PROJECT_DIR$/vendor/lee-to/laravel-package-command" />
       <path value="$PROJECT_DIR$/vendor/lee-to/fast-attributes" />
       <path value="$PROJECT_DIR$/vendor/moonshine/easymde" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-markdown" />
+      <path value="$PROJECT_DIR$/vendor/spatie/commonmark-shiki-highlighter" />
+      <path value="$PROJECT_DIR$/vendor/spatie/laravel-package-tools" />
+      <path value="$PROJECT_DIR$/vendor/spatie/shiki-php" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.0">

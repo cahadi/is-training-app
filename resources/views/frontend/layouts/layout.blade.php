@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets/images/favicon.png')}}" />
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.css">
     <!-- FileManager -->
     <!--
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
@@ -41,8 +41,6 @@
         <div class="main-panel">
 
             @yield('content')
-
-            @include('frontend.partials.footer')
 
         </div>
     </div>
@@ -68,7 +66,7 @@
 <script src="{{asset('assets/js/dashboard.js')}}"></script>
 <!-- End custom js for this page -->
 
-
+<script src="https://cdn.jsdelivr.net/npm/easymde/dist/easymde.min.js"></script>
 <!-- FileManager -->
 <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
 </body>

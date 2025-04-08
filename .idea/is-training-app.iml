@@ -132,6 +132,10 @@
       <excludeFolder url="file://$MODULE_DIR$/vendor/lee-to/laravel-package-command" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/lee-to/fast-attributes" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/moonshine/easymde" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-markdown" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/commonmark-shiki-highlighter" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/laravel-package-tools" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/shiki-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

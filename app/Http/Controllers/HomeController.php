@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Subject;
 
 class HomeController extends Controller
 {
     public function home()
     {
-        return view('frontend.pages.main');
+        $subjects = Subject::all();
+        return view('frontend.pages.main', compact('subjects'));
     }
 }

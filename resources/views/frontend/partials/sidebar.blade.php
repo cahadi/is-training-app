@@ -58,47 +58,37 @@
         </li>
         <li class="nav-item menu-items">
             <a class="nav-link" href="/">
-        <span class="menu-icon">
-          <i class="mdi mdi-speedometer"></i>
-        </span>
+                <span class="menu-icon">
+                  <i class="mdi mdi-speedometer"></i>
+                </span>
                 <span class="menu-title">Главная страница</span>
             </a>
         </li>
 
-        <li class="nav-item nav-category">
-            <span class="nav-link">Внедрение</span>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+        @foreach($subjects as $subject)
+            <li class="nav-item nav-category">
+                <span class="nav-link">{{ $subject->title }}</span>
+            </li>
+            @foreach($subject->topics as $topic)
+                <li class="nav-item menu-items">
+                    <a class="nav-link" data-toggle="collapse" href="#ui-basic{{ $topic->id }}" aria-expanded="false" aria-controls="ui-basic">
                 <span class="menu-icon">
                   <i class="mdi mdi-laptop"></i>
                 </span>
-                <span class="menu-title">Тема 1</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="ui-basic">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Урок 1</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item nav-category">
-            <span class="nav-link">Устройство</span>
-        </li>
-        <li class="nav-item menu-items">
-            <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
-                <span class="menu-icon">
-                  <i class="mdi mdi-laptop"></i>
-                </span>
-                <span class="menu-title">Тема 1</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="auth">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Урок 1</a></li>
-                </ul>
-            </div>
-        </li>
+                        <span class="menu-title">{{ $topic->title }}</span>
+                        <i class="menu-arrow"></i>
+                    </a>
+                    <div class="collapse" id="ui-basic{{ $topic->id }}">
+                        <ul class="nav flex-column sub-menu">
+                            @foreach($topic->lessons as $lesson)
+                                <li class="nav-item"> <a class="nav-link" href="/lesson/{{ $lesson->title }}">{{ $lesson->title }}</a></li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </li>
+            @endforeach
+        @endforeach
+
 
 
 
