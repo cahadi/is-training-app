@@ -8,6 +8,7 @@ use App\Models\Activity;
 use App\Models\Role;
 use App\MoonShine\Resources\ActivityResource;
 use App\MoonShine\Resources\RoleResource;
+use MongoDB\BSON\Timestamp;
 use MoonShine\Laravel\Fields\Relationships\BelongsTo;
 use MoonShine\Laravel\Pages\Crud\FormPage;
 use MoonShine\Contracts\UI\ComponentContract;
@@ -27,6 +28,7 @@ class UserFormPage extends FormPage
         return [
             Text::make('Surname'),
             Text::make('Login'),
+            Text::make('Email'),
             Text::make('Password'),
             BelongsTo::make('Activity',
                 'activity',

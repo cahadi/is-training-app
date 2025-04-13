@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,46 +14,44 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/', [HomeController::class, 'home'])->name('home');
-
-
-Route::prefix('/answers')->group(function (){
-    Route::get('/form/{title}',
-        [App\Http\Controllers\LessonControllers\ShowFormController::class,
-            'showForm']);
-    Route::post('/create',
-        [App\Http\Controllers\LessonControllers\ShowFormController::class,
-            'create']);
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+
+Route::prefix('/implementation')->group(function (){
+
+    Route::get('/{id}', [\App\Http\Controllers\ImplementationControllers\ShowController::class,
+        'show'])->name('implementation');
+    Route::get('showForm/{id}', [\App\Http\Controllers\ImplementationControllers\ShowFormController::class,
+        'showForm'])->name('implementation.answer_form');
+    Route::post('store', [\App\Http\Controllers\StoreController::class, 'store'])->name('answers.store');
+});
+Route::prefix('/functioning')->group(function (){
+
+    Route::get('/{id}', [\App\Http\Controllers\ImplementationControllers\ShowController::class, 'show'])
+        ->name('functioning');
+    Route::get('showForm/{id}', [\App\Http\Controllers\ImplementationControllers\ShowFormController::class,
+        'showForm'])->name('functioning.answer_form');
+
+});
+
 Route::prefix('/grades')->group(function (){
     Route::get('/', function(){
         return view('frontend.pages.grades');
     });
 });
+
 Route::prefix('/lesson')->group(function (){
     Route::get('/{title}',
         [App\Http\Controllers\LessonControllers\ShowController::class,
             'showOne']);
 });
-
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})/*->middleware(['auth', 'verified'])->name('dashboard')*/;
-/*
-Route::middleware('auth')->group(function () {
-    Route::get('/', function () {
-        return view('frontend.pages.main');
-    });
-
-    Route::get('/grades', function(){
-        return view('frontend.pages.grades');
-    });*/
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    //Route::get('/logout')
-/*});*/
 
 require __DIR__.'/auth.php';
