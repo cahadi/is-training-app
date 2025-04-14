@@ -34,11 +34,11 @@ class AiService
 
         $rating = trim(preg_replace('/.*Оценка:\s*(\d+)/', '$1', $output[1]));
         Log::info('Полученный рейтинг', ['rating' => $rating]);
-        /*
+
         if (!is_numeric($rating)) {
             Log::error('Получен некорректный результат оценки', ['result' => $rating]);
             return 'Ошибка: Неверный формат оценки';
-        }*/
+        }
 
         return intval($rating);
     }

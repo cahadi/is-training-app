@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Lesson;
 use App\Models\Subject;
 use App\Models\Topic;
+use App\Services\GeneratePassword;
 
 class ShowController extends Controller
 {
