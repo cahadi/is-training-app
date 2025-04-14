@@ -8,10 +8,13 @@ class Send
 {
     public function send($email, $pass)
     {
-        $headers = 'From: cahadi960@gmail.com';
-        mail($email, "Заявка с сайта", "Ваш пароль:".$pass ,$headers);
+        $message = "Ваш пароль: $pass"; //добавить ссылку на сайт, после выкладывания на хостинг
+        $to = $email;
+        $from = "cahadi960@gmail.com";
+        $subject = "Тема";
+        $subject = "=?utf-8?B?".base64_encode($subject)."?=";
+        $headers = "From: $from\r\nReply-to: $from\r\nContent-type: text/plain; charset=utf-8\r\n";
 
-
-        header("Приглашение");
+        mail($to, $subject, $message, $headers);
     }
 }
