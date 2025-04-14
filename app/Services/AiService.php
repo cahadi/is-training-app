@@ -32,6 +32,7 @@ class AiService
             return 'Ошибка при обращении к JavaScript: ' . implode("\n", $output);
         }
 
+        dd($output);
         $rating = trim(preg_replace('/.*Оценка:\s*(\d+)/', '$1', $output[1]));
         Log::info('Полученный рейтинг', ['rating' => $rating]);
 
