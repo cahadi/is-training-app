@@ -13,7 +13,8 @@
         "laravel/tinker": "^2.8",
         "moonshine/easymde": "^1.0",
         "moonshine/moonshine": "^3.7",
-        "spatie/laravel-markdown": "^2.7"
+        "spatie/laravel-markdown": "^2.7",
+      "ext-curl": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -19,6 +19,7 @@
         "vite": "^6.2.5"
     },
     "dependencies": {
+        "@huggingface/inference": "^3.7.1",
         "https-proxy-agent": "^7.0.6",
         "llamaai": "^1.0.4",
         "node-fetch": "^3.3.2",

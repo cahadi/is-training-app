@@ -6,6 +6,7 @@ use App\Models\Answer;
 use App\Models\Grade;
 use App\Models\Lesson;
 use App\Services\AiService;
+use App\Services\SendRequestService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -32,9 +33,11 @@ class ProcessAnswer implements ShouldQueue
     public function handle()
     {
         $lesson = Lesson::find($this->lessonId);
-        $aiService = new AiService();
-        $result = $aiService->ans($lesson->title, $this->body);
+        $service = new AiService();
+        //$service = new SendRequestService();
+        $result = $service->ans($lesson->title, $this->body);
 
+        dd($result);
         $grade = Grade::where('min', '<=', $result)
             ->where('max', '>=', $result)
             ->first();

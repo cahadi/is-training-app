@@ -2,21 +2,14 @@
 
 namespace App\Services;
 
-use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Log;
 
 class AiService
 {
-    protected Client $client;
-
-    public function __construct()
-    {
-        $this->client = new Client();
-    }
-
     public function ans($question, $answer)
     {
-        $command = "node ai_request.js " . escapeshellarg($question) . " " . escapeshellarg($answer) . " 2>&1";
+        $command = "python3 ai_request.py " . escapeshellarg($question) . " " . escapeshellarg($answer) . " 2>&1";
+
         $output = [];
         $returnVar = 0;
 
@@ -25,15 +18,14 @@ class AiService
         Log::info('Команда выполнена', ['command' => $command, 'output' => $output]);
 
         if ($returnVar !== 0) {
-            Log::error('Ошибка при выполнении JavaScript скрипта', [
+            Log::error('Ошибка при выполнении Python скрипта', [
                 'command' => $command,
                 'output' => $output,
             ]);
-            return 'Ошибка при обращении к JavaScript: ' . implode("\n", $output);
+            return 'Ошибка при обращении к Python: ' . implode("\n", $output);
         }
 
-        dd($output);
-        $rating = trim(preg_replace('/.*Оценка:\s*(\d+)/', '$1', $output[1]));
+        $rating = trim(preg_replace('/.*Оценка:\s*(\d+)/', '$1', $output[0]));
         Log::info('Полученный рейтинг', ['rating' => $rating]);
 
         if (!is_numeric($rating)) {
