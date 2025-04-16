@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ProcessAnswer;
+use App\Models\WaitingList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -16,8 +17,13 @@ class StoreController extends Controller
             'body' => 'required|string',
         ]);
 
-        ProcessAnswer::dispatch($request->lesson_id, $request->title, $request->body, Auth::id())
-            ->delay(now()->addMinutes(0));
+
+        $answer = new WaitingList();
+        $answer->user_id = Auth::id();
+        $answer->lesson_id = $request->lesson_id;
+        $answer->answer_title = $request->title;
+        $answer->answer_body = $request->body;
+        $answer->save();
 
         return redirect()->back()->with('status', 'answer-saved');
     }

@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Models\Answer;
 use App\Models\Grade;
 use App\Models\Lesson;
+use App\Models\WaitingList;
 use App\Services\AiService;
 use App\Services\SendRequestService;
 use Illuminate\Bus\Queueable;
@@ -42,7 +43,7 @@ class ProcessAnswer implements ShouldQueue
             ->where('max', '>=', $result)
             ->first();
 
-        $answer = new Answer();
+        $answer = new WaitingList();
         $answer->user_id = $this->userId;
         $answer->lesson_id = $this->lessonId;
         $answer->grade_id = $grade->id;

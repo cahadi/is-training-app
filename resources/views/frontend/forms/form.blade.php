@@ -36,7 +36,7 @@
                                     x-transition
                                     x-init="setTimeout(() => show = false, 2000)"
                                     class="text-sm text-gray-600"
-                                >{{ __('Ответ сохранен.') }}</p>
+                                >{{ __('Ответ отправлен на проверку') }}</p>
                             @endif
                         </div>
                     </form>

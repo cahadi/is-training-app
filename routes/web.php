@@ -27,39 +27,42 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
 
-Route::get('/inviting', [InvitingController::class, 'show'])->name('invite.show');
-Route::post('/inviting', [InvitingController::class, 'invite'])->name('invite.send');
+    Route::get('/inviting', [InvitingController::class, 'show'])->name('invite.show');
+    Route::post('/inviting', [InvitingController::class, 'invite'])->name('invite.send');
 
 
-Route::prefix('/implementation')->group(function (){
+    Route::prefix('/implementation')->group(function (){
 
-    Route::get('/{id}', [\App\Http\Controllers\ImplementationControllers\ShowController::class,
-        'show'])->name('implementation');
-    Route::get('showForm/{id}', [\App\Http\Controllers\ImplementationControllers\ShowFormController::class,
-        'showForm'])->name('implementation.answer_form');
-    Route::post('store', [\App\Http\Controllers\StoreController::class, 'store'])->name('answers.store');
-});
-Route::prefix('/functioning')->group(function (){
-
-    Route::get('/{id}', [\App\Http\Controllers\ImplementationControllers\ShowController::class, 'show'])
-        ->name('functioning');
-    Route::get('showForm/{id}', [\App\Http\Controllers\ImplementationControllers\ShowFormController::class,
-        'showForm'])->name('functioning.answer_form');
-
-});
-
-Route::prefix('/grades')->group(function (){
-    Route::get('/', function(){
-        return view('frontend.pages.grades');
+        Route::get('/{id}', [\App\Http\Controllers\ImplementationControllers\ShowController::class,
+            'show'])->name('implementation');
+        Route::get('showForm/{id}', [\App\Http\Controllers\ImplementationControllers\ShowFormController::class,
+            'showForm'])->name('implementation.answer_form');
+        Route::post('store', [\App\Http\Controllers\StoreController::class, 'store'])->name('answers.store');
     });
+    Route::prefix('/functioning')->group(function (){
+
+        Route::get('/{id}', [\App\Http\Controllers\ImplementationControllers\ShowController::class, 'show'])
+            ->name('functioning');
+        Route::get('showForm/{id}', [\App\Http\Controllers\ImplementationControllers\ShowFormController::class,
+            'showForm'])->name('functioning.answer_form');
+
+    });
+
+    Route::prefix('/grades')->group(function (){
+        Route::get('/', function(){
+            return view('frontend.pages.grades');
+        });
+    });
+
+    Route::get('/waitinglist', [\App\Http\Controllers\WaitingListControllers\ShowController::class, 'show'])
+        ->name('waitinglist.show');
+    Route::get('/waitinglist/form/{id}', [\App\Http\Controllers\WaitingListControllers\ShowController::class, 'evaluateForm'])
+        ->name('waitinglist.evaluateForm');
+    Route::post('/waitinglist/evaluate', [\App\Http\Controllers\WaitingListControllers\ShowController::class, 'evaluate'])
+        ->name('waitinglist.evaluate');
 });
 
-Route::prefix('/lesson')->group(function (){
-    Route::get('/{title}',
-        [App\Http\Controllers\LessonControllers\ShowController::class,
-            'showOne']);
-});
+
 
 require __DIR__.'/auth.php';
